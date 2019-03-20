@@ -3,16 +3,16 @@ services:
   - docker
 
 before_install:
-  - docker build  -t lcarlostest/react-test -f ./client/Dockerfile.dev ./client
+  - docker build  -t infopcn/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run lcarlostest/react-test npm test -- --coverage
+  - docker run infopcn/react-test npm test -- --coverage
 
 after_success:
-  - docker build -t lcarlostest/multi-client ./client
-  - docker build -t lcarlostest/multi-nginx ./nginx
-  - docker build -t lcarlostest/multi-server ./server
-  - docker build -t lcarlostest/multi-worker ./worker
+  - docker build -t infopcn/multi-client ./client
+  - docker build -t infopcn/multi-nginx ./nginx
+  - docker build -t infopcn/multi-server ./server
+  - docker build -t infopcn/multi-worker ./worker
   #log in the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
       # LES variables ci-dessus sont configurées dans travis-ci
